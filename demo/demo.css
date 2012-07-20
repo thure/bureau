@@ -1,0 +1,11 @@
+/* Bureau v0.1 - bureaujs.org/license - Will Shown | w@willshown.com */
+
+@media(min-width:980px){
+    body {
+        padding-top: 50px;
+    }
+}
+
+.begins-hidden {
+    display: none;
+}

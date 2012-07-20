@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<!-- Bureau v0.1 - bureaujs.org/license - Will Shown | w@willshown.com -->
+
+<html lang="en">
+
+<head>
+
+  <title>BureauJS Demo</title>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="" />
+  <meta name="description" content="The basic demo of BureauJS" />
+  <meta name="author" content="Will Shown" />
+  <meta name="viewport" content="width=device-width" />
+
+  <link rel="stylesheet" href="bootstrap.css" media="screen" />
+  <link rel="stylesheet" href="demo.css" media="screen" />
+
+</head>
+
+<body>
+
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand">bureau.js</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span12">
+        <form class="form-horizontal">
+          <fieldset id="bureau-target">
+            <legend>Legend Text</legend>
+            <div class="control-group">
+              <label class="control-label">Checkbox activates text input 1</label>
+              <div class="controls">
+              <label class="checkbox">
+                <input type="checkbox" id="option1" value="option1" />
+                This is checkbox 1.
+              </label>
+              </div>
+            </div>
+            <div class="control-group depends-on-option1 begins-hidden">
+              <label class="control-label" for="textinput1">This text input depends on checkbox 1 being checked</label>
+              <div class="controls">
+                <input type="text" class="input-xlarge" id="textinput1" />
+                <p class="help-block">Some help text.</p>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../dependencies/zepto.js"></script>
+  <script type="text/javascript" src="../lib/bureau.js"></script>
+  <script type="text/javascript" src="demo.js"></script>
+
+</body>
+
+</html>
