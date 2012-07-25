@@ -14,6 +14,9 @@ Additional planned features are:
 + thorough mobile compatibility
 + support for <select multiple="multiple"> elements
 
+**Bear in mind: bureau.js's API may change!**
+*When you download a new version, be sure to check its usage.*
+
 Usage
 -----
 
@@ -39,3 +42,20 @@ All you've got to do is call `bureau` on the scope you'd like to restrict the fo
 
 The context given to `when`, `then`, and `else`, i.e. the evaluation of `this` in those callbacks, is always the Zepto/jQuery instance of the responding element(s), not the instance of the `dependsOn` element(s).
 The `when` function can take one argument: the `dependsOn` Zepto/jQuery instance. The `then` and `else` functions currently take no arguments.
+
+The equivalent call to bureau of the example above, which defines functions equivalent to the string shortcuts used in the example, looks like this:
+
+    $('fieldset.bureau-target').bureau({
+      '.show-if-checkbox1-is-checked': {
+        dependsOn: '#checkbox1',
+        'when': function ($checkbox) {
+          return $checkbox.prop('checked');
+        },
+        'then': function () {
+          $(this).show();
+        },
+        'else': function () {
+          $(this).hide();
+        }
+      }
+    });
