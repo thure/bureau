@@ -21,45 +21,66 @@
 
 <body>
 
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <a class="brand">bureau.js</a>
-      </div>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand">bureau.js</a>
     </div>
   </div>
+</div>
 
-  <div class="container-fluid">
-    <div class="row-fluid">
-      <div class="span12">
-        <form class="form-horizontal">
-          <fieldset id="bureau-target">
-            <legend>Legend Text</legend>
-            <div class="control-group">
-              <label class="control-label">Checkbox activates text input 1</label>
-              <div class="controls">
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span12">
+
+      <form class="form-horizontal">
+
+        <fieldset id="bureau-target">
+
+          <legend>Legend Text</legend>
+
+          <div class="control-group">
+            <label class="control-label" for="option1">Checkbox activates text input 1</label>
+            <div class="controls">
               <label class="checkbox">
                 <input type="checkbox" id="option1" value="option1" />
                 This is checkbox 1.
               </label>
-              </div>
             </div>
-            <div class="control-group depends-on-option1 begins-hidden">
-              <label class="control-label" for="textinput1">This text input depends on checkbox 1 being checked</label>
-              <div class="controls">
-                <input type="text" class="input-xlarge" id="textinput1" />
-                <p class="help-block">Some help text.</p>
-              </div>
+          </div>
+          <div class="control-group depends-on-option1 begins-hidden">
+            <label class="control-label" for="textinput1">This text input depends on checkbox 1 being checked</label>
+            <div class="controls">
+              <input type="text" class="input-xlarge" id="textinput1" />
+              <p class="help-block">Some help text.</p>
             </div>
-          </fieldset>
-        </form>
-      </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label" for="textinput2">If you only type numbers in here, text input 3 will appear.</label>
+            <div class="controls">
+              <textarea id="textinput2" class="input-xlarge" rows="1"></textarea>
+            </div>
+          </div>
+          <div class="control-group depends-on-textinput2 begins-hidden">
+            <label class="control-label" for="textinput3">This text input depends on textarea 2 having only numbers.</label>
+            <div class="controls">
+              <input type="text" class="input-xlarge" id="textinput3" />
+              <p class="help-block">Some help text.</p>
+            </div>
+          </div>
+
+        </fieldset>
+
+      </form>
+
     </div>
   </div>
+</div>
 
-  <script type="text/javascript" src="../dependencies/zepto.js"></script>
-  <script type="text/javascript" src="../lib/bureau.js"></script>
-  <script type="text/javascript" src="demo.js"></script>
+<script type="text/javascript" src="../dependencies/zepto.js"></script>
+<script type="text/javascript" src="../lib/bureau.js"></script>
+<script type="text/javascript" src="demo.js"></script>
 
 </body>
 
