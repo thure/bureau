@@ -21,7 +21,7 @@
 //  });
 
   //here's what it should look like for simple showing:
-  $('fieldset.bureau-target').bureau({
+  $('fieldset#bureau-target').bureau({
     '.depends-on-option1': {
       'dependsOn': '#option1',
       'when': 'checked',
