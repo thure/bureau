@@ -40,16 +40,16 @@ All you've got to do is call `bureau` on the scope you'd like to restrict the fo
 
 (Hint: don't make `when` a very computationally intense function for now.)
 
-The context given to `when`, `then`, and `else`, i.e. the evaluation of `this` in those callbacks, is always the Zepto/jQuery instance of the responding element(s), not the instance of the `dependsOn` element(s).
-The `when` function can take one argument: the `dependsOn` Zepto/jQuery instance. The `then` and `else` functions currently take no arguments.
+`$(this)` is equivalent to `$(dependsOn)` for the `when` function, which can take the responding objects (equivalent to `$('.show-if-checkbox1-is-checked')` from the example) as its only argument.
+The opposite is true for `then` and `else`; in those functions, `$(this)` is the responding objects, while they can take a single argument which will be equivalent to `$('dependsOn')`.
 
-The equivalent call to bureau of the example above, which defines functions equivalent to the string shortcuts used in the example, looks like this:
+The equivalent call to `bureau` of the example above, which defines functions equivalent to the string shortcuts used in the example, looks like this:
 
     $('fieldset.bureau-target').bureau({
       '.show-if-checkbox1-is-checked': {
         dependsOn: '#checkbox1',
-        'when': function ($checkbox) {
-          return $checkbox.prop('checked');
+        'when': function () {
+          return $(this).prop('checked');
         },
         'then': function () {
           $(this).show();
