@@ -35,6 +35,6 @@ All you've got to do is call `bureau` on the scope you'd like to restrict the fo
 + `then`: a function or a string representing a common function (like `"show"` or `"hide"`) that is executed when `when` evaluates to `true`
 + `else`: a function or a string representing a common function that is executed when `when` evaluates to `false`
 
-The context given to `when`, `then`, and `else`, i.e. the evaluation of `this` in those callbacks, is always the Zepto/jQuery instance of the responding element, not the instance of the `dependsOn` element(s).
+The context given to `when`, `then`, and `else`, i.e. the evaluation of `this` in those callbacks, is always the Zepto/jQuery instance of the responding element(s), not the instance of the `dependsOn` element(s).
 The `when` function can take one argument: the `dependsOn` Zepto/jQuery instance. The `then` and `else` functions currently take no arguments.
 (Hint: don't make `when` a very computationally intense function for now.)
