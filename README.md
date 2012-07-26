@@ -10,7 +10,7 @@ Additional planned features are:
 + model-binding compatibility
 + optional jquery-ui integration (i.e. support for sliders, droppables, etc.)
 + thorough mobile compatibility
-+ support for <select multiple="multiple"> elements
++ support for `<select multiple="multiple">` elements
 
 **Bear in mind: bureau.js's API may change!**
 *When you download a new version, be sure to check its usage.*
