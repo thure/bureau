@@ -1,4 +1,4 @@
-bureau.js
+<img src="http://willshown.com/bureaurepo/bureau.png" height="140" width="140" /> bureau.js
 ========
 
 Bureau is a little library that helps you make forms that respond to user input. It's meant to help you perform typical tasks associated with designing complex HTML forms, such as showing/hiding additional form elements depending on the values of other form elements.
