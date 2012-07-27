@@ -5,7 +5,7 @@ Bureau is a little library that helps you make forms that respond to user input.
 
 Additional planned features are:
 + masking inputs
-+ input validation (built-in, and compatibility with M*C frameworks)
++ input validation (built-in, and compatibility with popular JavaScript MV* frameworks)
 + easy use of Zepto/jQuery's animation
 + model-binding compatibility
 + optional jquery-ui integration (i.e. support for sliders, droppables, etc.)
