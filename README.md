@@ -1,19 +1,21 @@
-![](http://willshown.com/bureaurepo/bureau.png) bureau.js
-========
+![](http://willshown.com/bureaurepo/bureau.png)
+=========================================================
 
-Bureau is a little library that helps you make forms that respond to user input. It's meant to help you perform typical tasks associated with designing complex HTML forms, such as showing/hiding additional form elements depending on the values of other form elements.
+Intro
+-----
+
+bureau.js is a little library that helps you make forms that respond to user input. It's meant to help you perform typical tasks associated with designing complex HTML forms, such as showing/hiding additional form elements depending on the values of other form elements.
 
 Additional planned features are:
 + masking inputs
 + input validation (built-in, and compatibility with popular JavaScript MV* frameworks)
 + easy use of Zepto/jQuery's animation
 + model-binding compatibility
-+ optional jquery-ui integration (i.e. support for sliders, droppables, etc.)
++ optional jQuery UI integration (i.e. support for sliders, droppables, etc.)
 + thorough mobile compatibility
 + support for `<select multiple="multiple">` elements
 
-**Bear in mind: bureau.js's API may change!**
-*When you download a new version, be sure to check its usage.*
+**Bear in mind: bureau.js's API is not stable!** When you download a new version, be sure to check its usage.
 
 Usage
 -----
@@ -57,3 +59,9 @@ The equivalent call to `bureau` of the example above, which defines functions eq
         }
       }
     });
+
+License
+-------
+bureau.js is released under the **MIT License**. You can always find it at [http://bureaujs.org/license][1].
+
+[1]: http://bureaujs.org/license
