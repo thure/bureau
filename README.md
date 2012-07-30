@@ -8,6 +8,7 @@ bureau.js is a little library that helps you make forms that respond to user inp
 
 Additional planned features are:
 + masking inputs
++ automatic focus adjustment options
 + input validation (built-in, and compatibility with popular JavaScript MV* frameworks)
 + easy use of Zepto/jQuery's animation
 + model-binding compatibility
