@@ -24,15 +24,17 @@
       'dependsOn': '#textinput4',
       'rules': [
         {
-          'when': /^[0-9a-fA-F]{3}$/,
+          'when': /^[0-9A-F]{3}$/i,
           'then': function(){
-            $(this).css('background-color',$(this).val());
+            var self = this;
+            $(this).css('background-color','#'+$(self).val());
           }
         },
         {
-          'when': /^[0-9a-fA-F]{6}$/,
+          'when': /^[0-9A-F]{6}$/i,
           'then': function(){
-            $(this).css('background-color',$(this).val());
+            var self = this;
+            $(this).css('background-color','#'+$(self).val());
           }
         }
       ]
