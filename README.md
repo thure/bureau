@@ -1,5 +1,4 @@
 ![](http://willshown.com/bureaurepo/bureau.long.png)
-=========================================================
 
 Intro
 -----
@@ -32,34 +31,53 @@ Usage
 
 The above example illustrates a common use for bureau.js.
 
-All you've got to do is call `bureau` on the scope you'd like to restrict the form business to, then pass it an object which has as keys Zepto/jQuery selectors to elements which will respond to form input. The values of those keys are also objects, each with a specific set of keys:
+### Structure ###
 
-+ `dependsOn`: a selector for form elements whose values/attributes will be listened to
-+ `when`: a function, or a regular expression that will be tested using the values of the elements selected by `dependsOn`, or a string corresponding to a common validator such as `"checked"`
-+ `then`: a function or a string representing a common function (like `"show"` or `"hide"`) that is executed when `when` evaluates to `true`
-+ `else`: a function or a string representing a common function that is executed when `when` evaluates to `false`
+Each call to `bureau` requires an Object with Zepto/jQuery selectors as keys and a ‘rule set’ as each key's value. A rule set is comprised of `dependsOn: /*selector*/` *and either* `rules: /*array of rules*/` *or* a single set of rules (as in the above example).
 
-(Hint: don't make `when` a very computationally intense function for now.)
+In this documentation, the resultant elements of the Zepto/jQuery selector that is the key of a rule set will be called the “responding elements” and the same for the `dependsOn` property of the rule set will be called the “attended elements”.
 
-`$(this)` is equivalent to `$(dependsOn)` for the `when` function, which can take the responding objects (equivalent to `$('.show-if-checkbox1-is-checked')` from the example) as its only argument.
-The opposite is true for `then` and `else`; in those functions, `$(this)` is the responding objects, while they can take a single argument which will be equivalent to `$('dependsOn')`.
+#### Pseudo-Scheme ####
 
-The equivalent call to `bureau` of the example above, which defines functions equivalent to the string shortcuts used in the example, looks like this:
-
-    $('fieldset.bureau-target').bureau({
-      '.show-if-checkbox1-is-checked': {
-        dependsOn: '#checkbox1',
-        'when': function () {
-          return $(this).prop('checked');
-        },
-        'then': function () {
-          $(this).show();
-        },
-        'else': function () {
-          $(this).hide();
+    $(scope).bureau({
+        responding_elements: {
+            dependsOn: attended_elements,
+            rules: [
+                {
+                    when: function( if (something) { return true } else { return false } ),
+                    then: function( /*do something if this 'when' is true*/ ),
+                    else: function( /*do something if this 'when' is false*/ ),
+                    updateOn: 'some_event some_other_event'
+                },
+                { … }, …
+            ],
+            triggerAtStart: 'some_event some_special_event'
         }
-      }
     });
+
+#### Rules ####
+
+Rules have two required components: `when` and at least one callback, `then` or `else`. All of these can be defined as Functions or Strings (called “string shortcuts” here, see below for which are available), and `when` can also be defined as a Regular Expression (called using `.test($(this).val());`).
+
+When `when` is called and evaluates to `true`, the `then` callback is executed, otherwise the `else` callback is executed.
+
+`this` evaluates to the attended elements for `when`, but not for `then` or `else` where `this` evaluates to the responding elements.
+
+You can specify the events on which `when` is evaluated by adding the `updateOn` property (default is `'change keyup'`) to the rules. You can also specify which events are fired on the attended elements elements right after the callbacks are ready by adding the `triggerAtStart` property (default is `'change'`). Use a space-separated list of events for both of those, and keep in mind `updateOn` belongs to each group of rules, while `triggerAtStart` belongs to the rule set at large.
+
+### String shortcuts ###
+
+##### `when` #####
+
+`'checked'`: `$(this).prop('checked')`
+
+`'empty'`: `$(this).val() === ''`
+
+##### `then`/`else` #####
+
+`'show'`: `$(this).show();`
+
+`'hide'`: `$(this).hide();`
 
 License
 -------
