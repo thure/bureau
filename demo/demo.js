@@ -7,15 +7,12 @@
   $('fieldset#bureau-target').bureau({
     '.depends-on-option1': {
       'dependsOn': '#option1',
-      'updateOn': 'change keyup',
       'when': 'checked',
       'then': 'show',
       'else': 'hide'
     },
     '.depends-on-textinput2': {
       'dependsOn': '#textinput2',
-      'updateOn': 'change keyup',
-      'triggerAtStart': 'change',
       'when': /^[\d\s]+$/,
       'then': 'show',
       'else': 'hide'
