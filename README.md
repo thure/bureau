@@ -20,14 +20,16 @@ Additional planned features are:
 Usage
 -----
 
-    $('fieldset.bureau-target').bureau({
-        '.show-if-checkbox1-is-checked': {
-            dependsOn: '#checkbox1',
-            when: 'checked',
-            then: 'show',
-            else: 'hide'
-        }
-    });
+```javascript
+$('fieldset.bureau-target').bureau({
+    '.show-if-checkbox1-is-checked': {
+        'dependsOn': '#checkbox1',
+        'when': 'checked',
+        'then': 'show',
+        'else': 'hide'
+    }
+});
+```
 
 The above example illustrates a common use for bureau.js.
 
@@ -39,21 +41,23 @@ In this documentation, the resultant elements of the Zepto/jQuery selector that 
 
 #### Pseudo-Scheme ####
 
-    $(scope).bureau({
-        responding_elements: {
-            dependsOn: attended_elements,
-            rules: [
-                {
-                    when: function( if (something) { return true } else { return false } ),
-                    then: function( /*do something if this 'when' is true*/ ),
-                    else: function( /*do something if this 'when' is false*/ ),
-                    updateOn: 'some_event some_other_event'
-                },
-                { … }, …
-            ],
-            triggerAtStart: 'some_event some_special_event'
-        }
-    });
+```javascript
+$(scope).bureau({
+    responding_elements: {
+        'dependsOn': attended_elements,
+        'rules': [
+            {
+                'when': function( if (something) { return true } else { return false } ),
+                'then': function( /*do this if 'when' returns true*/ ),
+                'else': function( /*do this if 'when' returns false*/ ),
+                'updateOn': 'some_event some_other_event'
+            },
+            { … }, …
+        ],
+        'triggerAtStart': 'some_event some_special_event'
+    }
+});
+```
 
 #### Rules ####
 
