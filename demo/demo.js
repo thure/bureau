@@ -24,6 +24,12 @@
       'dependsOn': '#textinput4',
       'rules': [
         {
+          'when': 'empty',
+          'then': function(){
+            $(this).css('background-color','white');
+          }
+        },
+        {
           'when': /^[0-9A-F]{3}$/i,
           'then': function(){
             var self = this;
