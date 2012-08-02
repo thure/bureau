@@ -5,15 +5,7 @@ Intro
 
 bureau.js is a little library that helps you make forms that respond to user input. It's meant to help you perform typical tasks associated with designing complex HTML forms, such as showing/hiding additional form elements depending on the values of other form elements.
 
-Additional planned features are:
-+ masking inputs
-+ automatic focus adjustment options
-+ input validation (built-in, and compatibility with popular JavaScript MV* frameworks)
-+ easy use of Zepto/jQuery's animation
-+ model-binding compatibility
-+ optional jQuery UI integration (i.e. support for sliders, droppables, etc.)
-+ thorough mobile compatibility
-+ support for `<select multiple="multiple">` elements
+Additional planned features comprise [three milestones in the issues section][milestones].
 
 **Bear in mind: bureau.js's API is not stable!** When you download a new version, be sure to check its usage.
 
@@ -88,3 +80,4 @@ License
 bureau.js is released under the **MIT License**. You can always find it at [http://bureaujs.org/license][1].
 
 [1]: http://bureaujs.org/license
+[milestones]: https://github.com/thure/bureau/issues/milestones
