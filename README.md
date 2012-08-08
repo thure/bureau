@@ -17,8 +17,8 @@ $('fieldset.bureau-target').bureau({
     '.show-if-checkbox1-is-checked': {
         'dependsOn': '#checkbox1',
         'when': 'checked',
-        'then': 'show',
-        'else': 'hide'
+        'yup': 'show',
+        'nope': 'hide'
     }
 });
 ```
@@ -40,8 +40,8 @@ $(scope).bureau({
         'rules': [
             {
                 'when': function( if (something) { return true } else { return false } ),
-                'then': function( /*do this if 'when' returns true*/ ),
-                'else': function( /*do this if 'when' returns false*/ ),
+                'yup': function( /*do this if 'when' changes to true*/ ),
+                'nope': function( /*do this if 'when' changes to false*/ ),
                 'updateOn': 'some_event some_other_event'
             },
             { … }, …
@@ -53,11 +53,11 @@ $(scope).bureau({
 
 #### Rules ####
 
-Rules have two required components: `when` and at least one callback, `then` or `else`. All of these can be defined as Functions or Strings (called “string shortcuts” here, see below for which are available), and `when` can also be defined as a Regular Expression (called using `.test($(this).val());`).
+Rules have two required components: `when` and at least one callback, `yup`, `nope`, `everyYup`, or `everyNope`. All of these can be defined as Functions or Strings (called “string shortcuts” here, see below for which are available), and `when` can also be defined as a Regular Expression (called using `.test($(this).val());`).
 
-When `when` is called and evaluates to `true`, the `then` callback is executed, otherwise the `else` callback is executed.
+When `when` is called and evaluates to `true`, the `everyYup` callback is executed, otherwise the `everyNope` callback is executed. Additionally, if `when`'s evaluation changed since the last time, `yup` is executed if it changed to `true`, and `nope` is executed if it changed to `false`.
 
-`this` evaluates to the attended elements for `when`, but not for `then` or `else` where `this` evaluates to the responding elements.
+`this` evaluates to the attended elements for `when`, but not for `yup` or `nope` (etc) where `this` evaluates to the responding elements.
 
 You can specify the events on which `when` is evaluated by adding the `updateOn` property (default is `'change keyup'`) to the rules. You can also specify which events are fired on the attended elements elements right after the callbacks are ready by adding the `triggerAtStart` property (default is `'change'`). Use a space-separated list of events for both of those, and keep in mind `updateOn` belongs to each group of rules, while `triggerAtStart` belongs to the rule set at large.
 
@@ -69,11 +69,13 @@ You can specify the events on which `when` is evaluated by adding the `updateOn`
 
 `'empty'`: `$(this).val() === ''`
 
-##### `then`/`else` #####
+##### `yup`/`nope`/`everyYup`/`everyNope` #####
 
 `'show'`: `$(this).show();`
 
 `'hide'`: `$(this).hide();`
+
+`'showOrHide:heightOrWidth:durationInMs:easing'`: this gives an animation function that works with the tools the browser has available; if CSS animations aren't available, but jQuery is, it uses jQuery's JavaScript-based animation. As the ultimate fallback, it just `.show()`s or `.hide()`s the responding elements. `easing` is optional.
 
 License
 -------
