@@ -11,7 +11,7 @@
       'dependsOn': '#option1',
       'when': 'checked',
       'yup': 'show:height:400:ease-in-out',
-      'nope': 'hide:height:400:ease-in-out'
+      'nope': 'hide:height:400:ease-in'
     },
     '.depends-on-textinput2': {
       'dependsOn': '#textinput2',
