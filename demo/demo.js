@@ -2,14 +2,15 @@
 
 (function ($) {
 
-  console.log('Demo started.');
+  "use strict";
+
+  window.console.log('Demo started.');
 
   $('fieldset#bureau-target').bureau({
     '.depends-on-option1': {
       'dependsOn': '#option1',
       'when': 'checked',
-      'yup': 'show',
-      'nope': 'hide'
+      'yup': 'show:height:400:ease-in-out'
     },
     '.depends-on-textinput2': {
       'dependsOn': '#textinput2',
@@ -44,4 +45,4 @@
     }
   });
 
-})(typeof Zepto !== "undefined" && Zepto !== null ? Zepto : jQuery);
+}(typeof window.Zepto !== "undefined" && window.Zepto !== null ? window.Zepto : window.jQuery));
