@@ -47,6 +47,7 @@ $(scope).bureau({
             { … }, …
         ],
         'triggerAtStart': 'some_event some_special_event'
+        'mask': 'masking_string'
     }
 });
 ```
@@ -60,6 +61,8 @@ When `when` is called and evaluates to `true`, the `everyYup` callback is execut
 `this` evaluates to the attended elements for `when`, but not for `yup` or `nope` (etc) where `this` evaluates to the responding elements.
 
 You can specify the events on which `when` is evaluated by adding the `updateOn` property (default is `'change keyup'`) to the rules. You can also specify which events are fired on the attended elements elements right after the callbacks are ready by adding the `triggerAtStart` property (default is `'change'`). Use a space-separated list of events for both of those, and keep in mind `updateOn` belongs to each group of rules, while `triggerAtStart` belongs to the rule set at large.
+
+You can also mask any inputs by adding a `mask` property with a value that corresponds to the mask you want to apply. [See the Masked Input Plugin page][maskedinput] for more details.
 
 ### String shortcuts ###
 
@@ -83,3 +86,4 @@ bureau.js is released under the **MIT License**. You can always find it at [http
 
 [1]: http://bureaujs.org/license
 [milestones]: https://github.com/thure/bureau/issues/milestones
+[maskedinput]: http://digitalbush.com/projects/masked-input-plugin/
