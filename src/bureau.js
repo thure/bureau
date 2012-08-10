@@ -9,6 +9,7 @@
   var exists     = function(obj) { return typeof obj !== "undefined" && obj !== null;};
   var usingZepto = exists(window.Zepto);
   var usingModernizr = exists(window.Modernizr);
+  var usingMasking = exists($.mask);
   var keyframeUID = 0;
 
   /* This block based upon Modernizr 2.6.2pre.
@@ -235,34 +236,36 @@
           }
         }
 
-      } else {
-        throw new Error('Bureau: no "when" condition to act upon.');
+        return function (e, state) {
+          var validation = validator.call($watched, $responding);
+          if ($watched.data('previous-validation') !== validation.toString()){
+            $watched.data('previous-validation',validation.toString()).trigger('bureau:change', [validation]);
+            if(validation){
+              if(state === 'init' && exists(callbacks['init-yup'])) {callbacks['init-yup'].call($responding, $watched);}else{
+                if(exists(callbacks.yup)) {callbacks.yup.call($responding, $watched);}
+              }
+            }else{
+              if(state === 'init' && exists(callbacks['init-nope'])) {callbacks['init-nope'].call($responding, $watched);}else{
+                if(exists(callbacks.nope)) {callbacks.nope.call($responding, $watched);}
+              }
+            }
+          }
+          if (validation) {
+            if(state === 'init' && exists(callbacks['init-everyYup'])) {callbacks['init-everyYup'].call($responding, $watched);}else{
+              if(exists(callbacks.everyYup))  {callbacks.everyYup.call($responding, $watched);}
+            }
+          } else {
+            if(state === 'init' && exists(callbacks['init-everyNope'])) {callbacks['init-everyNope'].call($responding, $watched);}else{
+              if(exists(callbacks.everyNope)) {callbacks.everyNope.call($responding, $watched);}
+            }
+          }
+        }
+
       }
 
-      return function (e, state) {
-        var validation = validator.call($watched, $responding);
-        if ($watched.data('previous-validation') !== validation.toString()){
-          $watched.data('previous-validation',validation.toString()).trigger('bureau:change', [validation]);
-          if(validation){
-            if(state === 'init' && exists(callbacks['init-yup'])) {callbacks['init-yup'].call($responding, $watched);}else{
-              if(exists(callbacks.yup)) {callbacks.yup.call($responding, $watched);}
-            }
-          }else{
-            if(state === 'init' && exists(callbacks['init-nope'])) {callbacks['init-nope'].call($responding, $watched);}else{
-              if(exists(callbacks.nope)) {callbacks.nope.call($responding, $watched);}
-            }
-          }
-        }
-        if (validation) {
-          if(state === 'init' && exists(callbacks['init-everyYup'])) {callbacks['init-everyYup'].call($responding, $watched);}else{
-            if(exists(callbacks.everyYup))  {callbacks.everyYup.call($responding, $watched);}
-          }
-        } else {
-          if(state === 'init' && exists(callbacks['init-everyNope'])) {callbacks['init-everyNope'].call($responding, $watched);}else{
-            if(exists(callbacks.everyNope)) {callbacks.everyNope.call($responding, $watched);}
-          }
-        }
-      };
+      if(usingMasking && exists(rules.mask) && isString(rules.mask)){
+        $responding.mask(rules.mask);
+      }
 
     };
 
@@ -276,30 +279,27 @@
 
           var subject = configuration[selector];
 
-          if (isString(subject.dependsOn))
-          {
+          var $responding = $(selector,          $this);
+          var $watched    = $(subject.dependsOn, $this);
 
-            var $responding = $(selector,          $this);
-            var $watched    = $(subject.dependsOn, $this);
-
-            try{
-              if (subject.hasOwnProperty('rules') && isArray(subject.rules)){
-                var i;
-                for(i=0; i<subject.rules.length; i+=1){
-                  var rule = subject.rules[i];
-                  $watched.on (isString(rule.updateOn) ? rule.updateOn : defaultOn, generateBinding(rule, $responding, $watched));
-                }
-              }else{
-                $watched.on (isString(subject.updateOn) ? subject.updateOn : defaultOn, generateBinding(subject, $responding, $watched));
+          try{
+            if (subject.hasOwnProperty('rules') && isArray(subject.rules)){
+              var i;
+              for(i=0; i<subject.rules.length; i+=1){
+                var rule = subject.rules[i];
+                $watched.on (isString(rule.updateOn) ? rule.updateOn : defaultOn, generateBinding(rule, $responding, $watched));
               }
-            } catch (error){
-              window.console.error(error.message);
+            }else{
+              $watched.on (isString(subject.updateOn) ? subject.updateOn : defaultOn, generateBinding(subject, $responding, $watched));
             }
-            $watched.trigger(isString(subject.triggerAtStart) ? subject.triggerAtStart : defaultTrigger , ['init']);
-
+          } catch (error){
+            window.console.error(error.message);
           }
 
+          $watched.trigger(isString(subject.triggerAtStart) ? subject.triggerAtStart : defaultTrigger , ['init']);
+
         }
+
       }
 
     });
